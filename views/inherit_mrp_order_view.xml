@@ -1,19 +1,20 @@
 <?xml version="1.0"?>
 <odoo>
-<data>
-
-<!-- FORM VIEW  -->
-
+    <data>
+        <!-- FORM VIEW  -->
         <record id="mrp_repair_order_view" model="ir.ui.view">
             <field name="name">mrp.repair.form</field>
             <field name="model">mrp.repair</field>
             <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
             <field name="arch" type="xml">
                 <header>
-                        <button name="%(action_transientmodel_wizard)d" string="Create Purchase Order" type="action" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
-                </header>   
+                    <button name="%(action_transientmodel_wizard)d" string="Create Purchase Order" type="action" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
+                </header>
+                <xpath expr="//tree/field[@name='lot_id']" position="after">
+                    <field name="warranty" required="1"/>
+                </xpath>
             </field>
         </record>
-</data>
+    </data>
 </odoo>
 
