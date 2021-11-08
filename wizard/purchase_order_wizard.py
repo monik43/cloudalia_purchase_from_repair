@@ -38,7 +38,7 @@ class createpurchaseorder_mrp(models.TransientModel):
                         "product_qty": record.product_uom_qty,
                         "price_unit": record.price_unit,
                         "product_subtotal": record.price_subtotal,
-						"warranty": record.warranty,
+                        "warranty": record.warranty,
                     },
                 )
             )
@@ -127,6 +127,10 @@ class Getmrprepairdata(models.TransientModel):
     )
     product_subtotal = fields.Float(string="Sub Total", compute="_compute_total")
 
+    warranty = fields.Selection(
+        [("iw", "IW"), ("oow", "OOW"), ("na", "-")], "Garantía", default="na"
+    )
+    
     @api.depends("product_qty", "price_unit")
     def _compute_total(self):
         for record in self:
