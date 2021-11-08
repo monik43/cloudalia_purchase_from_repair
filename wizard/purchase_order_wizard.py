@@ -38,6 +38,7 @@ class createpurchaseorder_mrp(models.TransientModel):
                         "product_qty": record.product_uom_qty,
                         "price_unit": record.price_unit,
                         "product_subtotal": record.price_subtotal,
+						"warranty": record.warranty,
                     },
                 )
             )

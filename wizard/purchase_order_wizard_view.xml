@@ -18,6 +18,7 @@
                 <group>
                     <field name="new_order_line_ids" nolabel ="1">
                         <tree editable="botttom" create = 'false'>
+                            <field name="warranty"/>
                             <field name="product_id" />
                             <field name="name" />
                             <!-- <field name="date_planned" /> -->
