@@ -108,7 +108,6 @@ class Getmrprepairdata(models.TransientModel):
     _description = "Get MRP Repair Order Data"
 
     new_order_line_id = fields.Many2one("create.purchaseorder_mrp")
-    seller_id = fields.Many2one("res.partner", compute="_compute_seller_id", readonly=False, required=True)
     product_id = fields.Many2one("product.product", string="Product", required=True)
     name = fields.Char(string="Description")
     product_qty = fields.Float(string="Quantity", required=True)
@@ -135,12 +134,3 @@ class Getmrprepairdata(models.TransientModel):
     def _compute_total(self):
         for record in self:
             record.product_subtotal = record.product_qty * record.price_unit
-
-    @api.depends("product_qty", "price_unit")
-    def _compute_seller_id(self):
-        for rec in self:
-            rec.seller_id = 1
-            print(f"""
-                seller ids -> {rec.product_id.seller_ids}
-                a -> {rec.product_qty * rec.price_unit}
-            """)
