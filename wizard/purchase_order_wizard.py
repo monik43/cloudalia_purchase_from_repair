@@ -109,7 +109,8 @@ class Getmrprepairdata(models.TransientModel):
 
     new_order_line_id = fields.Many2one("create.purchaseorder_mrp")
 
-    seller_id = fields.Many2one("res.partner", compute="_compute_seller_id")
+    
+    seller_id = fields.Many2one('res.partner', compute="_compute_seller_id")
 
     product_id = fields.Many2one("product.product", string="Product", required=True)
     name = fields.Char(string="Description")
@@ -132,17 +133,19 @@ class Getmrprepairdata(models.TransientModel):
     warranty = fields.Selection(
         [("iw", "IW"), ("oow", "OOW"), ("na", "-")], "Garantía", default="na"
     )
-
+    
     @api.depends("product_qty", "price_unit")
     def _compute_total(self):
         for record in self:
             record.product_subtotal = record.product_qty * record.price_unit
 
+    @api.depends("product_id")
     def _compute_seller_id(self):
-        print(
-            f"""
-                product id -> {self.product_id.id}
-                product name -> {self.product_id.name}
-                product, seller_ids -> {self.product_id.seller_ids}
-                """
-        )
+        for rec in self:
+            for line in rec.product_id.seller_ids:
+                if line.name.id in (12300,10198):
+                    print(f"""
+                    seller_id id -> {line.name.id}
+                    seller_id name -> {line.name.name}
+                    """)
+                    rec.seller_id = line.name.id
