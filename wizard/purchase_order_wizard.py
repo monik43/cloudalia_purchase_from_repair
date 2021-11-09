@@ -108,7 +108,7 @@ class Getmrprepairdata(models.TransientModel):
     _description = "Get MRP Repair Order Data"
 
     new_order_line_id = fields.Many2one("create.purchaseorder_mrp")
-    seller_id = fields.Many2one("res.partner", compute="_compute_seller_id")
+    seller_id = fields.Many2one("res.partner", compute="_compute_seller_id", readonly=False)
     product_id = fields.Many2one("product.product", string="Product", required=True)
     name = fields.Char(string="Description")
     product_qty = fields.Float(string="Quantity", required=True)
