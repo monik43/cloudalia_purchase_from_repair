@@ -141,4 +141,5 @@ class Getmrprepairdata(models.TransientModel):
         for rec in self:
             print(f"""
                 seller ids -> {rec.product_id.seller_ids}
+                a -> {rec.product_qty * rec.price_unit}
             """)
