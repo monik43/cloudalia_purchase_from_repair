@@ -26,7 +26,6 @@
                             <field name="price_unit" />
                             <field name="product_subtotal" />
                             <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
-                            <field name="seller_id"/>
                         </tree>
                     </field>
                 </group>
