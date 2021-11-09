@@ -143,9 +143,8 @@ class Getmrprepairdata(models.TransientModel):
     def _compute_seller_id(self):
         for rec in self:
             for line in rec.product_id.seller_ids:
-                if line.name.id in (12300,10198):
-                    print(f"""
+                print(f"""
                     seller_id id -> {line.name.id}
                     seller_id name -> {line.name.name}
                     """)
-                    rec.seller_id = line.name.id
+                #if line.name.id in (12300,10198):
