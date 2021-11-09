@@ -139,6 +139,7 @@ class Getmrprepairdata(models.TransientModel):
     @api.depends("product_qty", "price_unit")
     def _compute_seller_id(self):
         for rec in self:
+            rec.seller_id = 1
             print(f"""
                 seller ids -> {rec.product_id.seller_ids}
                 a -> {rec.product_qty * rec.price_unit}
