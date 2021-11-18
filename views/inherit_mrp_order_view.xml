@@ -13,6 +13,9 @@
                 <xpath expr="//tree/field[@name='lot_id']" position="after">
                     <field name="warranty" required="1"/>
                 </xpath>
+                <xpath expr="//tree" position="inside">
+                    <field name="create_uid" readonly="1"/>
+                </xpath>
             </field>
         </record>
     </data>
