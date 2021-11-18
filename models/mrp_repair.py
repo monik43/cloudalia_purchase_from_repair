@@ -15,11 +15,14 @@ class mrp_repair(models.Model):
     @api.onchange("warranty")
     def onchange_warranty(self):
         for line in self:
-            ASUS_ID = 33
-            SAT_ID = 66
+            ASUS = 33
+            SAT = 66
+            DESECHADOS = 4
+            PROD = 7
             if line.warranty == "iw":
-                line.location_id = self.env["stock.location"].browse(ASUS_ID)
+                line.location_id = self.env["stock.location"].browse(ASUS)
             elif line.warranty == "oow":
-                line.location_id = self.env["stock.location"].browse(SAT_ID)
+                line.location_id = self.env["stock.location"].browse(SAT)
             elif line.warranty == "bad":
-                line.location_id = self.env["stock.location"].browse(4)
+                line.location_id = self.env["stock.location"].browse(PROD)
+                line.location_dest_id = self.env["stock.location"].browse(DESECHADOS)
